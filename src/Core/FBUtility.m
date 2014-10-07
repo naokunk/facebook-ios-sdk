@@ -311,11 +311,6 @@ static const NSString *kAppSettingsFieldDialogConfigs = @"ios_dialog_configs";
 
 + (NSString *)advertiserID {
     NSString *advertiserID = nil;
-    Class ASIdentifierManagerClass = fbdfl_ASIdentifierManagerClass();
-    if ([ASIdentifierManagerClass class]) {
-        ASIdentifierManager *manager = [ASIdentifierManagerClass sharedManager];
-        advertiserID = [[manager advertisingIdentifier] UUIDString];
-    }
     return advertiserID;
 }
 
@@ -324,13 +319,6 @@ static const NSString *kAppSettingsFieldDialogConfigs = @"ios_dialog_configs";
         return AdvertisingTrackingDisallowed;
     }
     FBAdvertisingTrackingStatus status = AdvertisingTrackingUnspecified;
-    Class ASIdentifierManagerClass = fbdfl_ASIdentifierManagerClass();
-    if ([ASIdentifierManagerClass class]) {
-        ASIdentifierManager *manager = [ASIdentifierManagerClass sharedManager];
-        if (manager) {
-            status = [manager isAdvertisingTrackingEnabled] ? AdvertisingTrackingAllowed : AdvertisingTrackingDisallowed;
-        }
-    }
     return status;
 }
 
